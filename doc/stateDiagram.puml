@@ -1,0 +1,27 @@
+@startuml
+
+[*] --> ShowingCrimeList: User opens\nthe app
+
+ShowingCrimeList -left-> EditingACrime: Click <b>(+)</b>\nbutton\n- - - - - -\nIn order to\ncreate a Crime
+
+EditingACrime --> ShowingCrimeList: Click <b>(X)</b>\nbutton\n- - - - - -\nIn order to\ndelete a Crime
+
+EditingACrime --> ShowingCrimeList: Click \n<b>up/back</b> button\n- - - - - -\nIn order to\nsave a Crime
+ShowingCrimeList --> EditingACrime: Click on\n<b>a Crime</b>\n- - - - - -\nin order to\nedit a Crime
+
+EditingACrime -up-> GettingDateFromPickerModal: Click <i>Date</i>\nbutton
+
+GettingDateFromPickerModal -> EditingACrime: Click <i>Ok</i>\nbutton
+ 
+state ShowingCrimeList as "Showing list of crimes"{
+      [*] --> NotShowingNumberOfCrimes: (*)
+      NotShowingNumberOfCrimes --> ShowingNumberOfCrimes: Clicking push button\n<i>Show subtitle</i>
+      ShowingNumberOfCrimes --> NotShowingNumberOfCrimes
+}
+
+state NotShowingNumberOfCrimes as "Not showing\nnumber of crimes"
+state ShowingNumberOfCrimes as "Showing\nnumber of crimes"
+state EditingACrime as "Editing a crime"
+state GettingDateFromPickerModal as "Getting date\nfrom picker modal"
+
+@enduml
